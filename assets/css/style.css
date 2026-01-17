@@ -290,6 +290,17 @@ nav a:hover, nav a:focus {
     margin-top: 1rem;
 }
 
+/* --- CLASE PARA FORZAR EXPANSIÓN --- */
+.expand-all .collapsible-content {
+    max-height: 1000px !important;
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    background-color: #f0f0f0;
+}
+.expand-all .collapsible-trigger .arrow {
+    transform: rotate(90deg);
+}
+
 .pdf-visible {
     max-height: 500px !important; /* Force visibility for PDF */
     padding: 1rem !important;
