@@ -132,6 +132,11 @@ header .container {
     margin: 0;
 }
 
+.logo img {
+    height: 50px; /* Ajusta esta altura según sea necesario */
+    vertical-align: middle;
+}
+
 nav ul {
     list-style: none;
     display: flex;
