@@ -1,0 +1,464 @@
+/* --- VARIABLES Y ESTILOS GLOBALES --- */
+:root {
+    --dark-blue: #0D2B45;
+    --medium-blue: #203C56;
+    --light-blue: #5D82A3;
+    --accent-yellow: #FFC107;
+    --white: #FFFFFF;
+    --off-white: #f4f4f4;
+    --text-color: #333;
+    --text-on-dark: #EAEAEA;
+    
+    --font-family-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --container-width: 960px;
+}
+
+/* --- RESET BÁSICO --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    background-color: var(--white);
+    color: var(--text-color);
+}
+
+/* --- PRELOADER --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-blue);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-left-color: var(--accent-yellow);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- ESTRUCTURA Y CONTENEDORES --- */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+section {
+    padding: 4rem 1rem;
+    border-bottom: 1px solid #ddd;
+    scroll-margin-top: 80px; /* Ajuste para el header fijo */
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+h1, h2, h3 {
+    color: var(--dark-blue);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p.subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--medium-blue);
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+}
+
+
+/* --- HEADER Y NAVEGACIÓN --- */
+header {
+    background-color: var(--white);
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    color: var(--dark-blue);
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--medium-blue);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a:focus {
+    color: var(--accent-yellow);
+}
+
+/* --- BOTONES --- */
+.cta-button {
+    background-color: var(--accent-yellow);
+    color: var(--dark-blue);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover, .cta-button:focus {
+    background-color: #ffca2c;
+    transform: translateY(-2px);
+}
+
+/* --- SECCIÓN DE SERVICIOS --- */
+.service-group-title {
+    font-size: 1.8rem;
+    color: var(--medium-blue);
+    display: inline-block;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.service-group-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.8s ease-out;
+}
+
+.service-group-title.is-visible::after {
+    transform: scaleX(1);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.service-card, .service-card-full {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-left: 5px solid var(--light-blue);
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+    border-left-color: var(--accent-yellow);
+}
+
+.service-card:hover .service-icon {
+    color: var(--accent-yellow);
+}
+
+.service-icon {
+    margin-bottom: 1rem;
+    color: var(--light-blue);
+    transition: color 0.3s ease;
+}
+
+.service-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.service-card-full {
+    grid-column: 1 / -1;
+}
+
+.service-card h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.service-list {
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+/* --- ELEMENTOS INTERACTIVOS --- */
+.collapsible-trigger {
+    color: var(--dark-blue);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    transition: color 0.3s;
+}
+
+.collapsible-trigger .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.collapsible.active .collapsible-trigger .arrow {
+    transform: rotate(90deg);
+}
+
+.collapsible-trigger:hover {
+    color: var(--accent-yellow);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, margin-top 0.5s ease-out;
+    background-color: #efefef;
+    padding: 0 1rem;
+    border-radius: 5px;
+    margin-top: 0;
+}
+
+.collapsible.active .collapsible-content {
+    max-height: 500px; /* Adjust as needed */
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.pdf-visible {
+    max-height: 500px !important; /* Force visibility for PDF */
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.tech-term {
+    color: var(--dark-blue);
+    font-weight: bold;
+    border-bottom: 2px dotted var(--accent-yellow);
+    cursor: help;
+    position: relative;
+}
+
+.multicolumn {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+/* --- SECCIÓN MARCO LEGAL Y CONTACTO --- */
+.flexibility-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--off-white);
+    border-left: 5px solid var(--accent-yellow);
+    border-radius: 8px;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    text-align: center;
+}
+
+.contact-item {
+    min-width: 200px;
+}
+
+.contact-item strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--dark-blue);
+    margin-bottom: 0.5rem;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: var(--medium-blue);
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* --- POPOVER PARA TÉRMINOS TÉCNICOS --- */
+.tech-popover {
+    position: absolute;
+    background-color: var(--dark-blue);
+    color: var(--text-on-dark);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 300px;
+    max-width: 90vw;
+    z-index: 110;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    visibility: hidden;
+}
+
+.tech-popover.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.tech-popover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent var(--dark-blue) transparent;
+}
+
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--text-on-dark);
+    text-align: center;
+    padding: 2rem 0;
+}
+
+footer .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+/* --- ESTILOS PARA EXPORTACIÓN A PDF --- */
+.pdf-export-mode header,
+.pdf-export-mode .cta-button,
+.pdf-export-mode .tech-popover {
+    display: none !important;
+}
+
+.pdf-export-mode .collapsible {
+    page-break-inside: avoid;
+}
+
+.pdf-export-mode .collapsible-content {
+    max-height: 1000px !important; /* Ensure content is visible */
+    padding: 1rem !important;
+    margin-top: 1rem !important;
+    background-color: transparent !important;
+    border-top: 1px solid #ddd;
+}
+
+.pdf-export-mode .collapsible-trigger .arrow {
+    transform: rotate(90deg); /* Show as expanded */
+}
+
+.pdf-export-mode section {
+    border-bottom: none !important;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    page-break-after: always; /* Force a page break after each section */
+}
+
+.pdf-export-mode section:last-of-type {
+    page-break-after: avoid;
+}
+
+.pdf-export-mode, .pdf-export-mode body {
+    background-color: var(--white) !important;
+    color: #000 !important;
+}
+
+.pdf-export-mode .service-card,
+.pdf-export-mode .flexibility-section {
+    box-shadow: none;
+    border: 1px solid #ddd;
+}
+
+.pdf-export-mode .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important; /* Desactiva la animación para la captura */
+}
+
+/* --- ANIMACIONES --- */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
