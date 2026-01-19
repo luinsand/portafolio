@@ -109,3 +109,61 @@ a {
     text-decoration: underline;
     color: #007bff;
 }
+
+/* --- Mejoras de Diseño Estático para PDF --- */
+
+/* 2. Fondos de sección alternos */
+#main-content-pdf #servicios,
+#main-content-pdf #contacto {
+    background-color: #f7f9fc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    width: calc(100% - 40px);
+}
+
+/* 3. Sombra para tarjetas */
+.service-card, .service-card-full {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+/* 4. Color de acento para iconos */
+.service-icon svg {
+    stroke: #FFC107; /* Amarillo Acento */
+    width: 36px;
+    height: 36px;
+}
+
+/* --- Deshabilitar todas las transiciones y animaciones para la vista PDF estática --- */
+.service-group-title::after,
+.service-card,
+.service-card-full,
+.cta-button,
+.collapsible-content,
+.service-icon,
+.tech-popover {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Asegurar que los estados hover no causen cambios visuales */
+.service-card:hover,
+.cta-button:hover,
+.collapsible-trigger:hover,
+.service-icon:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background-color: inherit !important;
+    border-left-color: inherit !important;
+    color: inherit !important;
+    cursor: default !important; /* Quitar cursor de puntero */
+}
+
+/* Asegurar que el service-group-title::after siempre esté visible sin animación */
+.service-group-title::after {
+    transform: scaleX(1) !important; /* Forzar ancho completo */
+    transition: none !important;
+}
