@@ -10,35 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- FUNCIÓN DE EXPORTACIÓN A PDF (CON html2pdf.js) ---
-    const exportButton = document.getElementById('export-pdf');
-    if (exportButton) {
-        exportButton.addEventListener('click', generatePdfWithHtml2Pdf);
-    }
-
-    function generatePdfWithHtml2Pdf() {
-        const mainContent = document.getElementById('main-content');
-        const body = document.body;
-
-        // Add a class to the body to apply print-specific styles
-        body.classList.add('pdf-export-mode');
-
-        const opt = {
-            margin: [0.5, 0.5, 0.5, 0.5], // inches
-            filename: 'Portafolio_MM_Seguridad_Integral.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, logging: false, useCORS: true },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        };
-
-        // Generate the PDF
-        html2pdf().from(mainContent).set(opt).save().then(() => {
-            // Remove the class after the PDF has been generated
-            body.classList.remove('pdf-export-mode');
-        });
-    }
-
     // --- LÓGICA PARA ELEMENTOS COLAPSABLES (ACORDEÓN) ---
     const collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
     collapsibleTriggers.forEach(trigger => {
@@ -159,6 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    console.log('Script cargado. Interactividad, animaciones y exportación a PDF listas.');
+    console.log('Script cargado. Interactividad y animaciones listas.');
 
 });

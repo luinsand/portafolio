@@ -1,0 +1,111 @@
+/* assets/css/pdf-styles.css */
+
+/* General print styles */
+@page {
+    size: A4;
+    margin: 1.5cm; /* Margins for printing, adjust as needed */
+}
+
+body {
+    -webkit-print-color-adjust: exact !important; /* For printing background colors/images */
+    print-color-adjust: exact !important;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* A more standard font for PDF if needed */
+    color: #333;
+    background-color: #fff;
+    width: 21cm; /* A4 width */
+    min-height: 29.7cm; /* A4 height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Hide header and footer from the main page to be printed, if they are not explicitly part of the content being captured by html2pdf */
+/* In portafolio-pdf.html, the main content for PDF is inside #main-content-pdf */
+.pdf-export-header,
+footer {
+    display: none !important;
+}
+
+/* Ensure main content takes full width and doesn't have responsive constraints */
+#main-content-pdf {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%; /* Override container max-width for print */
+    max-width: none;
+    padding: 10px 0; /* Adjust padding as needed for print */
+    margin: 0;
+}
+
+/* Ensure all collapsible content is visible in PDF */
+.collapsible-content-pdf,
+.collapsible .collapsible-content { /* Target both the new class and the original collapsible content */
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    /* Remove any transition properties that might delay display */
+    transition: none !important;
+}
+
+.collapsible-trigger {
+    display: none !important; /* Hide triggers for collapsibles */
+}
+
+/* Disable reveal-on-scroll animations */
+.reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Adjust image sizes for print if necessary */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Prevent inline issues */
+    margin: 10px auto; /* Center images */
+}
+
+/* Specific styles for tech-term details in PDF */
+.tech-term-detail {
+    font-size: 0.9em;
+    color: #555;
+    background-color: #f0f0f0;
+    padding: 5px 8px;
+    border-left: 3px solid #FFD700; /* Use accent color for emphasis */
+    margin-top: 5px;
+    display: block; /* Ensure it takes its own line */
+}
+
+/* Style for the term itself when its detail is shown */
+.tech-term {
+    color: #007bff; /* Example: highlight the term itself */
+    font-weight: bold;
+    cursor: auto; /* Remove pointer cursor */
+}
+
+/* Ensure no page breaks inside critical elements */
+h2, h3, h4, .service-card, .marco-legal-chunk {
+    page-break-inside: avoid;
+}
+
+ul.multicolumn {
+    column-count: 1 !important; /* Prevent multi-column layout for better PDF reading */
+}
+
+/* Hide preloader as it's not needed for PDF view */
+.preloader {
+    display: none !important;
+}
+
+/* Ensure links are readable */
+a {
+    text-decoration: underline;
+    color: #007bff;
+}
