@@ -91,7 +91,7 @@ img {
 }
 
 /* Ensure no page breaks inside critical elements */
-h2, h3, h4, .service-card, .marco-legal-chunk {
+h2, h3, h4, .service-card, .service-card-full, .service-group, .marco-legal-chunk {
     page-break-inside: avoid;
 }
 
